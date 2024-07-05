@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: admin
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: joola_web_development
+
+test:
+  <<: *default
+  database: joola_web_test
+
+production:
+  <<: *default
+  database: joola_web_production
+  username: joola_web
+  password: <%= ENV["JOOLA_WEB_DATABASE_PASSWORD"] %>
